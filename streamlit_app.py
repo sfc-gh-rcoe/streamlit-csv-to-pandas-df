@@ -14,5 +14,5 @@ introduce_app()
 
 r_theFile = get_a_file()
 if r_theFile is not None:
-	df = pd.read_csv(r_theFile)
+	df = pd.read_csv(r_theFile, header=None, names=['transactionDate', 'transactionAmount', 'transactionStatus'])
 	st.table(df)
