@@ -12,6 +12,7 @@ def get_a_file():
 
 introduce_app()
 
-df = pd.read_csv(get_a_file())
-if df is not None:
+r_theFile = get_a_file()
+if r_theFile is not None:
+	df = pd.read_csv(r_theFile)
 	st.table(df)
