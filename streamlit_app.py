@@ -13,4 +13,5 @@ def get_a_file():
 introduce_app()
 
 df = pd.read_csv(get_a_file())
-st.table(df)
+if df is not None:
+	st.table(df)
