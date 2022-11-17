@@ -42,8 +42,4 @@ if r_theFile is not None:
 	now = datetime.now()
 	t_stamp = now.strftime("%H%M%S")
 	df_snp = snp_session.createDataFrame(df)
-	df_snp.write.mode('Overwrite').save_as_table("table_one_gb-" + t_stamp)
-
-
-
-
+	df_snp.write.mode('Overwrite').save_as_table("table_one_gb_" + t_stamp)
