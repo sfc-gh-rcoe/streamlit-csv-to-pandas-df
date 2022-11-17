@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 import snowflake.connector
+from datetime import datetime
 from snowflake.snowpark.session import Session
 
 
@@ -38,8 +39,9 @@ if r_theFile is not None:
 	snp_session.use_role(st.secrets["snowflake"].role)
 	snp_session.use_schema(st.secrets["snowflake"].schema)
 	snp_session.use_warehouse(st.secrets["snowflake"].warehouse)
+	t_stamp = now().strftime("%H%M%S")
 	df_snp = snp_session.createDataFrame(df)
-	df_snp.write.mode('Overwrite').save_as_table("table_one_gb")
+	df_snp.write.mode('Overwrite').save_as_table("table_one_gb-" + t_stamp)
 
 
 
