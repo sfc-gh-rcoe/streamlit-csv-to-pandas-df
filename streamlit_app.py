@@ -37,7 +37,7 @@ if r_theFile is not None:
 	snp_session.use_database(st.secrets["snowflake"].database)
 	snp_session.use_role(st.secrets["snowflake"].role)
 	snp_session.use_schema(st.secrets["snowflake"].schema)
-	 snp_session.use_warehouse(st.secrets["snowflake"].warehouse)
+	snp_session.use_warehouse(st.secrets["snowflake"].warehouse)
 	df_snp = snp_session.createDataFrame(df)
 	df_snp.write.mode('Overwrite').save_as_table("table_one_gb")
 
