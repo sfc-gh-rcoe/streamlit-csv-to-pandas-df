@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import snowflake-snowpark-python
 
 def introduce_app():
 	st.title("Welcome to the file uploader")
