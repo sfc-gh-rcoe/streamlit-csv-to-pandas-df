@@ -34,7 +34,7 @@ if r_theFile is not None:
 	df = pd.read_csv(r_theFile, header=None, names=['transactionDate', 'transactionAmount', 'transactionStatus'])
 	st.table(df)
 	snp_session = create_sp_session()
-	df_snp = snp_session.CreateDataFrame(df)
+	df_snp = snp_session.createDataFrame(df)
 	df_snp.write.mode('Overwrite').save_as_table("table_one_gb")
 
 
