@@ -9,7 +9,7 @@ def create_sp_session():
   conn_param = {
     "account": st.secrets["snowflake"].account,
     "user": st.secrets["snowflake"].user,
-    "databasae": st.secrets["snowflake"].database,
+    "database": st.secrets["snowflake"].database,
     "role": st.secrets["snowflake"].role,
     "warehouse": st.secrets["snowflake"].warehouse,
     "schema": st.secrets["snowflake"].schema,
