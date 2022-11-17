@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
-import snowflake-snowpark-python
+import snowflake.connector
+from snowflake.snowpark.session import Session
 
 
 
