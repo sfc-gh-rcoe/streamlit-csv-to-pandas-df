@@ -7,13 +7,13 @@ from snowflake.snowpark.session import Session
 
 def create_sp_session():
   conn_param = {
-    "account": streamlit.secrets["snowflake"].account,
-    "user": streamlit.secrets["snowflake"].user,
-    "databasae": streamlit.secrets["snowflake"].database,
-    "role": streamlit.secrets["snowflake"].role,
-    "warehouse": streamlit.secrets["snowflake"].warehouse,
-    "schema": streamlit.secrets["snowflake"].schema,
-    "password": streamlit.secrets["snowflake"].password
+    "account": st.secrets["snowflake"].account,
+    "user": st.secrets["snowflake"].user,
+    "databasae": st.secrets["snowflake"].database,
+    "role": st.secrets["snowflake"].role,
+    "warehouse": st.secrets["snowflake"].warehouse,
+    "schema": st.secrets["snowflake"].schema,
+    "password": st.secrets["snowflake"].password
   }
   session = Session.builder.configs(conn_param).create()
   return session
