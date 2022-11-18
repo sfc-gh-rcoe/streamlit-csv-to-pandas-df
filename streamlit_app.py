@@ -41,12 +41,13 @@ def inspect_for_header(t_df):
 	#Inspect data frame for possible column headers
 	t_newNames = {}
 	# st.table(t_df)
-	for j in range(t_df.shape[1]):
-		# st.write(t_df[j][0])
-		st.write(str(j))
-		# t_newNames.update({j: t_df[j][0]})
-		t_newNames.update({j: t_df[j]})
-	return t_newNames
+	st.write(str(t_df.shape[1])
+#	for j in range(t_df.shape[1]):
+#		# st.write(t_df[j][0])
+#		st.write(str(j))
+#		# t_newNames.update({j: t_df[j][0]})
+#		t_newNames.update({j: t_df[j]})
+#	return t_newNames
 
 def grant_header_names(t_df):
 	n_cols = df.shape[1]
