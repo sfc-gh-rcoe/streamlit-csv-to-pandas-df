@@ -31,7 +31,7 @@ def create_snow_table(s_sess, t_df):
 		st.write(t_df[j][0])
 		t_newNames.update({j: t_df[j][0]})
 	st.write(t_newNames)
-	t_df.rename(t_newNames, inplace=True)
+	t_df.rename(columns=t_newNames, inplace=True)
 	st.table(t_df)
 #	df_snp = s_sess.createDataFrame(t_df)
 #	df_snp.write.mode('Overwrite').save_as_table("table_one_gb_" + t_stamp)
