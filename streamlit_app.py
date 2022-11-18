@@ -30,7 +30,8 @@ def create_snow_table(s_sess):
 	df_snp.write.mode('Overwrite').save_as_table("table_one_gb_" + t_stamp)
 
 def grant_header_names(t_df):
-	for i in t_df.shape[1]:
+	n_cols = df.shape[1]
+	for i in n_cols:
 		st.text_input("Name for column " + str(i))
 
 def introduce_app():
