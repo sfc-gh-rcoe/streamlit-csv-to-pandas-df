@@ -36,7 +36,8 @@ def grant_header_names(t_df):
 	st.button("Apply column nams", on_click=apply_header_names)
 
 def apply_header_names(a_column_names):
-
+	# Implement logic here
+	pass
 
 def introduce_app():
 	st.title("Welcome to the file uploader")
