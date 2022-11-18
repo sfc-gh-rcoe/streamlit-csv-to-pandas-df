@@ -40,11 +40,11 @@ def create_snow_table(s_sess, t_df):
 def inspect_for_header(t_df):
 	#Inspect data frame for possible column headers
 	t_newNames = {}
-	for j in range(t_df.shape[1]):
-		st.write(t_df[j][0])
-		t_newNames.update({j: t_df[j][0]})
-	st.write(t_newNames)
-	return t_newNames
+	st.table(t_df)
+	#for j in range(t_df.shape[1]):
+	#	st.write(t_df[j][0])
+	#	t_newNames.update({j: t_df[j][0]})
+	#return t_newNames
 
 def grant_header_names(t_df):
 	n_cols = df.shape[1]
