@@ -32,7 +32,7 @@ introduce_app()
 
 r_theFile = get_a_file()
 if r_theFile is not None:
-	df = pd.read_csv(r_theFile, header=None])
+	df = pd.read_csv(r_theFile, header=None)
 	st.table(df)
 	snp_session = create_sp_session()
 #	snp_session.use_database(st.secrets["snowflake"].database)
