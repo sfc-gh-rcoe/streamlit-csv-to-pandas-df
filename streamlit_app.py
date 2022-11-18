@@ -1,3 +1,4 @@
+import streamlit as st
 import snowflake.connector
 from datetime import datetime
 from snowflake.snowpark.session import Session
