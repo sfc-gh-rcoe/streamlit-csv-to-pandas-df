@@ -31,7 +31,7 @@ def create_snow_table(s_sess):
 
 def grant_header_names(t_df):
 	for i in t_df.shape[1]:
-		st.text_input("Name for column " + i)
+		st.text_input("Name for column " + str(i))
 
 def introduce_app():
 	st.title("Welcome to the file uploader")
@@ -50,7 +50,7 @@ if r_theFile is not None:
 	st.table(df)
 	snp_session = create_sp_session()
 	n_cols = df.shape[1]
-	st.write("This table has " + n_cols + " columns.")
+	st.write("This table has " + str(n_cols) + " columns.")
 	b_hasheader = st.checkbox("Table has a header row?")
 	if (not b_hasheader):
 		#need to fill in form for column names
