@@ -28,7 +28,8 @@ def create_snow_table(s_sess, t_df):
 	now = datetime.now()
 	t_stamp = now.strftime("%H%M%S")
 	t_newNames = {}
-	for j in range(t_df.shape[1]):
+	n_cols = t_df.shape[1]
+	for j in range(n_cols):
 		st.write(t_df[j][0])
 		t_newNames.update({j: t_df[j][0]})
 	st.write(t_newNames)
