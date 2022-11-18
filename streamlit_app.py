@@ -26,8 +26,11 @@ def create_snow_table(s_sess, t_df):
 #	snp_session.use_warehouse(st.secrets["snowflake"].warehouse)
 	now = datetime.now()
 	t_stamp = now.strftime("%H%M%S")
+	t_newNames = {}
 	for j in range(t_df.shape[1]):
 		st.write(t_df[j][0])
+		t_newNames.add(t_df[j][0])
+	st.write(t_newNames)
 #	df_snp = s_sess.createDataFrame(t_df)
 #	df_snp.write.mode('Overwrite').save_as_table("table_one_gb_" + t_stamp)
 
