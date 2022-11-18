@@ -85,7 +85,7 @@ if r_theFile is not None:
 		df = pd.DataFrame(df, header=None)
 	else:
 #		df = pd.read_csv(r_theFile, header=1, skiprows=1)
-		df = pd.DataFrame(df, header=1, skiprows=1)
+		df = pd.DataFrame(df, columns=c_headers)
 	st.table(df)
 	#snp_session = create_sp_session()
 	#n_cols = df.shape[1]
