@@ -19,6 +19,20 @@ def create_sp_session():
   session = Session.builder.configs(conn_param).create()
   return session
 
+def create_snow_table(s_sess):
+#	snp_session.use_database(st.secrets["snowflake"].database)
+#	snp_session.use_role(st.secrets["snowflake"].role)
+#	snp_session.use_schema(st.secrets["snowflake"].schema)
+#	snp_session.use_warehouse(st.secrets["snowflake"].warehouse)
+	now = datetime.now()
+	t_stamp = now.strftime("%H%M%S")
+	df_snp = s_sess.createDataFrame(df)
+	df_snp.write.mode('Overwrite').save_as_table("table_one_gb_" + t_stamp)
+
+def grant_header_names(t_df):
+	for i in t_df.shape[1]:
+		st.text_input("Name for column " + i)
+
 def introduce_app():
 	st.title("Welcome to the file uploader")
 
@@ -35,11 +49,12 @@ if r_theFile is not None:
 	df = pd.read_csv(r_theFile, header=None)
 	st.table(df)
 	snp_session = create_sp_session()
-#	snp_session.use_database(st.secrets["snowflake"].database)
-#	snp_session.use_role(st.secrets["snowflake"].role)
-#	snp_session.use_schema(st.secrets["snowflake"].schema)
-#	snp_session.use_warehouse(st.secrets["snowflake"].warehouse)
-	now = datetime.now()
-	t_stamp = now.strftime("%H%M%S")
-	df_snp = snp_session.createDataFrame(df)
-	df_snp.write.mode('Overwrite').save_as_table("table_one_gb_" + t_stamp)
+	n_cols = df.shape[1]
+	st.write("This table has " + n_cols + " columns.")
+	b_hasheader = st.checkbox("Table has a header row?")
+	if !b_hasheader:
+		#need to fill in form for column names
+		grant_header_names(df)
+	else:
+		create_snow_table(snp_session)
+
