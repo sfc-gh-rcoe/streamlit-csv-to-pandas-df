@@ -81,9 +81,11 @@ if r_theFile is not None:
 	r_options = ('yes', 'no')
 	b_headers = st.radio("Column headers?", (r_options))
 	if (b_headers == 1):
-		df = pd.read_csv(r_theFile, header=None)
+#		df = pd.read_csv(r_theFile, header=None)
+		df = pd.DataFrame(df, header=None)
 	else:
-		df = pd.read_csv(r_theFile, header=1, skiprows=1)
+#		df = pd.read_csv(r_theFile, header=1, skiprows=1)
+		df = pd.DataFrame(df, header=1, skiprows=1)
 	st.table(df)
 	#snp_session = create_sp_session()
 	#n_cols = df.shape[1]
