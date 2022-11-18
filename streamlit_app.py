@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 import snowflake.connector
 from datetime import datetime
 from snowflake.snowpark.session import Session
