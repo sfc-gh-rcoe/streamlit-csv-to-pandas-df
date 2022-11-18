@@ -38,15 +38,14 @@ def create_snow_table(s_sess, t_df):
 #	df_snp = s_sess.createDataFrame(t_df)
 #	df_snp.write.mode('Overwrite').save_as_table("table_one_gb_" + t_stamp)
 
-def inspect_for_header(t_df):
+def inspect_for_header(t_df, t_newNames):
 	#Inspect data frame for possible column headers
-	t_newNames = {}
 	n_col = int(t_df.shape[1])
 	st.table(t_df)
 #	st.write(str(n_col))
-	#for j in range(n_col):
-	#	t_newNames.update({j: t_df[j]})
-	#return t_newNames
+	for j in range(n_col):
+		t_newNames.update({j: t_df[j]})
+	return t_newNames
 
 def grant_header_names(t_df):
 	n_cols = df.shape[1]
@@ -71,9 +70,10 @@ introduce_app()
 
 r_theFile = get_a_file()
 b_hasheader = False
+t_newNames = {}
 if r_theFile is not None:
 	df = pd.read_csv(r_theFile)
-	c_headers = inspect_for_header(df)
+	c_headers = inspect_for_header(df, t_newNames)
 	st.write(c_headers)
 	st.write("Does the above output look to be column headers?")
 	r_options = ('yes', 'no')
