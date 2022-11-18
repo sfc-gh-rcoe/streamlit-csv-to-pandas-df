@@ -31,7 +31,7 @@ def create_snow_table(s_sess, t_df):
 	n_cols = t_df.shape[1]
 	for j in range(n_cols):
 		st.write(t_df[j][0])
-		t_newNames.update({j: t_df[j][0]})
+		t_newNames.update({j: t_df[0][j]})
 	st.write(t_newNames)
 	t_df.rename(columns=t_newNames, inplace=True)
 	st.table(t_df)
