@@ -83,7 +83,7 @@ if r_theFile is not None:
 	if (b_headers == 1):
 		df = pd.read_csv(r_theFile, header=None)
 	else:
-		df = pd.read_csv(r_theFile, header=1, names=c_headers, skiprows=1)
+		df = pd.read_csv(r_theFile, header=1, skiprows=1)
 	st.table(df)
 	#snp_session = create_sp_session()
 	#n_cols = df.shape[1]
