@@ -52,8 +52,12 @@ def get_a_file():
 introduce_app()
 
 r_theFile = get_a_file()
+b_hasheader = False
 if r_theFile is not None:
-	df = pd.read_csv(r_theFile, header=None)
+	if (not b_hasheader):
+		df = pd.read_csv(r_theFile, header=None)
+	else:
+		df = pd.read_csv(r_theFile)
 	st.table(df)
 	snp_session = create_sp_session()
 	n_cols = df.shape[1]
@@ -63,5 +67,5 @@ if r_theFile is not None:
 		#need to fill in form for column names
 		grant_header_names(df)
 	else:
-		create_snow_table(snp_session, r_theFile)
+		create_snow_table(snp_session, df)
 
