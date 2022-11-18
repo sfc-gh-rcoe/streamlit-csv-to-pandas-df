@@ -19,14 +19,15 @@ def create_sp_session():
   session = Session.builder.configs(conn_param).create()
   return session
 
-def create_snow_table(s_sess):
+def create_snow_table(s_sess, u_fileObject):
 #	snp_session.use_database(st.secrets["snowflake"].database)
 #	snp_session.use_role(st.secrets["snowflake"].role)
 #	snp_session.use_schema(st.secrets["snowflake"].schema)
 #	snp_session.use_warehouse(st.secrets["snowflake"].warehouse)
+	t_df = pd.read_csv(u_fileObject)
 	now = datetime.now()
 	t_stamp = now.strftime("%H%M%S")
-	df_snp = s_sess.createDataFrame(df)
+	df_snp = s_sess.createDataFrame(t_df)
 	df_snp.write.mode('Overwrite').save_as_table("table_one_gb_" + t_stamp)
 
 def grant_header_names(t_df):
@@ -62,5 +63,5 @@ if r_theFile is not None:
 		#need to fill in form for column names
 		grant_header_names(df)
 	else:
-		create_snow_table(snp_session)
+		create_snow_table(snp_session, r_theFile)
 
