@@ -19,12 +19,11 @@ def create_sp_session():
   session = Session.builder.configs(conn_param).create()
   return session
 
-def create_snow_table(s_sess, u_fileObject):
+def create_snow_table(s_sess, t_df):
 #	snp_session.use_database(st.secrets["snowflake"].database)
 #	snp_session.use_role(st.secrets["snowflake"].role)
 #	snp_session.use_schema(st.secrets["snowflake"].schema)
 #	snp_session.use_warehouse(st.secrets["snowflake"].warehouse)
-	t_df = pd.read_csv(u_fileObject)
 	now = datetime.now()
 	t_stamp = now.strftime("%H%M%S")
 	df_snp = s_sess.createDataFrame(t_df)
