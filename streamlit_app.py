@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import snowflake.connector
+import numpy as np
 from datetime import datetime
 from snowflake.snowpark.session import Session
 
@@ -73,7 +74,7 @@ if r_theFile is not None:
 	c_headers = inspect_for_header(df)
 	st.write(c_headers)
 	st.write("Does the above output look to be column headers?")
-	r_options = ['yes', 'no']
+	r_options = np.ndarray(['yes', 'no'])
 	b_headers = st.radio("Column headers?", r_options, 1)
 	if (b_headers == 1):
 		df = pd.read_csv(r_theFile, header=None)
