@@ -45,7 +45,7 @@ def inspect_for_header(t_df):
 		# st.write(t_df[j][0])
 		st.write(str(j))
 		# t_newNames.update({j: t_df[j][0]})
-		t_newNames.update({j: t_df[j])
+		t_newNames.update({j: t_df[j]})
 	return t_newNames
 
 def grant_header_names(t_df):
