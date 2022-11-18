@@ -42,11 +42,11 @@ def inspect_for_header(t_df):
 	#Inspect data frame for possible column headers
 	t_newNames = {}
 	# st.table(t_df)
-	st.write(str(t_df.shape[1]))
-#	for j in range(t_df.shape[1]):
-#		# st.write(t_df[j][0])
-#		st.write(str(j))
-#		# t_newNames.update({j: t_df[j][0]})
+#	st.write(str(t_df.shape[1]))
+	for j in range(t_df.shape[1]):
+		# st.write(t_df[j][0])
+		st.write(str(j))
+		t_newNames.update({j: t_df[j][0]})
 #		t_newNames.update({j: t_df[j]})
 	return t_newNames
 
