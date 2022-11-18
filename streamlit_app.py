@@ -1,5 +1,3 @@
-import pandas as pd
-import streamlit as st
 import snowflake.connector
 from datetime import datetime
 from snowflake.snowpark.session import Session
@@ -26,8 +24,10 @@ def create_snow_table(s_sess, t_df):
 #	snp_session.use_warehouse(st.secrets["snowflake"].warehouse)
 	now = datetime.now()
 	t_stamp = now.strftime("%H%M%S")
-	df_snp = s_sess.createDataFrame(t_df)
-	df_snp.write.mode('Overwrite').save_as_table("table_one_gb_" + t_stamp)
+	for j in range(t_df.shape[1]):
+		st.write(t_df[0][j]
+#	df_snp = s_sess.createDataFrame(t_df)
+#	df_snp.write.mode('Overwrite').save_as_table("table_one_gb_" + t_stamp)
 
 def grant_header_names(t_df):
 	n_cols = df.shape[1]
