@@ -75,8 +75,8 @@ if r_theFile is not None:
 	st.write(c_headers)
 	st.write("Does the above output look to be column headers?")
 	r_options = np.ndarray(['yes', 'no'])
-	b_headers = st.radio("Column headers?", r_options )
-	if (b_headers == 1):
+	b_headers = st.radio("Column headers?", r_options 1)
+	if (b_headers == 'no'):
 		df = pd.read_csv(r_theFile, header=None)
 	else:
 		df = pd.read_csv(r_theFile, header=True, columns=c_headers, skiprows=1)
