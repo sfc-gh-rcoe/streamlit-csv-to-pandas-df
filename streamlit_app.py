@@ -52,7 +52,7 @@ if r_theFile is not None:
 	n_cols = df.shape[1]
 	st.write("This table has " + n_cols + " columns.")
 	b_hasheader = st.checkbox("Table has a header row?")
-	if (!b_hasheader):
+	if (not b_hasheader):
 		#need to fill in form for column names
 		grant_header_names(df)
 	else:
