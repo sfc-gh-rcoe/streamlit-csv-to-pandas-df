@@ -42,8 +42,9 @@ def inspect_for_header(t_df):
 	t_newNames = {}
 	# st.table(t_df)
 	for j in range(t_df.shape[1]):
-		st.write(t_df[j][0])
-		t_newNames.update({j: t_df[j][0]})
+		# st.write(t_df[j][0])
+		st.write(str(j))
+		# t_newNames.update({j: t_df[j][0]})
 	return t_newNames
 
 def grant_header_names(t_df):
