@@ -80,7 +80,7 @@ if r_theFile is not None:
 	r_options = ('yes', 'no')
 	b_headers = st.radio("Column headers?", (r_options), 1)
 	st.write(b_headers)
-	if (b_headers != 1):
+	if (b_headers != 'yes'):
 #		df = pd.read_csv(r_theFile, header=None)
 		df = pd.DataFrame(df)
 		for k in range(len(c_headers)):
