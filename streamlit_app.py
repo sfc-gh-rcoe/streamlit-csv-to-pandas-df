@@ -82,6 +82,8 @@ if r_theFile is not None:
 	if (b_headers != 1):
 #		df = pd.read_csv(r_theFile, header=None)
 		df = pd.DataFrame(df)
+		for k in range(len(c_headers):
+			st.text_input("Name for column " + str(k) + ":")
 	else:
 #		df = pd.read_csv(r_theFile, header=1, skiprows=1)
 		df = pd.DataFrame(df, columns=c_headers)
