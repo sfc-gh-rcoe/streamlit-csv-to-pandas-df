@@ -94,7 +94,7 @@ if r_theFile is not None:
 	else:
 #		df = pd.read_csv(r_theFile, header=1, skiprows=1)
 		df = apply_header_names(df)
-		n_df = df.drop([0,1], inplace=True)
+		n_df = df.drop([0,1])
 	st.table(n_df)
 	#snp_session = create_sp_session()
 	#n_cols = df.shape[1]
