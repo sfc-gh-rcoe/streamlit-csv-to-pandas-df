@@ -78,6 +78,7 @@ introduce_app()
 r_theFile = get_a_file()
 b_hasheader = False
 t_newNames = {}
+n_df = pd.DataFrame()
 if r_theFile is not None:
 	df = pd.read_csv(r_theFile, header=None)
 	c_headers = inspect_for_header(df, t_newNames)
