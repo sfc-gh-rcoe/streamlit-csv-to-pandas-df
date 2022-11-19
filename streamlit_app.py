@@ -54,9 +54,15 @@ def grant_header_names(t_df):
 		st.text_input("Name for column " + str(i))
 	st.button("Apply column nams", on_click=apply_header_names)
 
-def apply_header_names(a_column_names):
+def apply_header_names(a_df):
 	# Implement logic here
-	pass
+	n_cols = int(a_df.shape[1])
+	t_colNames = {}
+	for i in range(n_cols):
+		t_colNames.update({i, a_df[i][0]})
+	a_df.rename(columns=t_colNames, inplace=True)
+	return a_df
+		
 
 def introduce_app():
 	st.title("Welcome to the file uploader")
@@ -87,7 +93,7 @@ if r_theFile is not None:
 			st.text_input("Name for column " + str(k) + ":")
 	else:
 #		df = pd.read_csv(r_theFile, header=1, skiprows=1)
-		df = pd.DataFrame(df, columns=c_headers)
+		df = apply_header_names(df)
 	st.table(df)
 	#snp_session = create_sp_session()
 	#n_cols = df.shape[1]
