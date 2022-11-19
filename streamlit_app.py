@@ -79,7 +79,7 @@ if r_theFile is not None:
 	st.write("Does the above output look to be column headers?")
 	r_options = ('yes', 'no')
 	b_headers = st.radio("Column headers?", (r_options))
-	if (b_headers == 1):
+	if (b_headers != 1):
 #		df = pd.read_csv(r_theFile, header=None)
 		df = pd.DataFrame(df, header=None)
 	else:
