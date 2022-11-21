@@ -93,12 +93,12 @@ if r_theFile is not None:
 	b_headers = st.radio("Column headers?", (r_options), 1)
 	st.write(b_headers)
 	if (b_headers != 'yes'):
-#		df = pd.read_csv(t_dataBuffer, header=None)
+#		df = pd.read_csv(StringIO(str(t_dataBuffer)), header=None)
 		df = pd.DataFrame(df)
 		for k in range(len(c_headers)):
 			st.text_input("Name for column " + str(k) + ":")
 	else:
-#		df = pd.read_csv(t_dataBuffer, header=1, skiprows=1)
+#		df = pd.read_csv(StringIO(str(t_dataBuffer)), header=1, skiprows=1)
 		df = apply_header_names(df)
 		n_df = df.drop([0, 0])
 	st.table(n_df)
