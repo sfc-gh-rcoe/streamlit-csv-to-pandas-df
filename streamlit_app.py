@@ -80,7 +80,7 @@ introduce_app()
 r_theFile = get_a_file()
 b_hasheader = False
 t_newNames = {}
-# t_dataBuffer = r_theFile.read()
+t_dataBuffer = r_theFile.read()
 n_df = pd.DataFrame()
 if r_theFile is not None:
 	df = pd.read_csv(t_dataBuffer, header=None)
