@@ -85,7 +85,7 @@ except:
 	st.write("no current file selected")
 n_df = pd.DataFrame()
 if r_theFile is not None:
-	df = pd.read_csv(t_dataBuffer, header=None)
+	df = pd.read_csv(StringIO(str(t_dataBuffer)), header=None)
 	c_headers = inspect_for_header(df, t_newNames)
 	st.write(c_headers)
 	st.write("Does the above output look to be column headers?")
