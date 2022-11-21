@@ -69,8 +69,9 @@ def introduce_app():
 
 def get_a_file():
 	theFile = st.file_uploader("Locate the file to be uploaded")
+	theFileBuffer = theFile.read()
 	if theFile is not None:
-		return theFile
+		return theFileBuffer
 	
 
 introduce_app()
@@ -78,7 +79,7 @@ introduce_app()
 r_theFile = get_a_file()
 b_hasheader = False
 t_newNames = {}
-t_dataBuffer = r_theFile.read()
+# t_dataBuffer = r_theFile.read()
 n_df = pd.DataFrame()
 if r_theFile is not None:
 	df = pd.read_csv(t_dataBuffer, header=None)
