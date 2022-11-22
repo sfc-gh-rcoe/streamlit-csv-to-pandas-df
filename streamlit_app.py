@@ -71,13 +71,13 @@ def stage_field_names(t_index, t_fieldName):
 introduce_app()
 
 r_theFile = get_a_file()
-r_theFileName = r_theFile.name
 b_hasheader = False
 b_createSnowTable = False
 t_newNames = {}
 encoding = 'utf-8'
 try:
 	t_dataBuffer = r_theFile.read()
+	r_theFileName = r_theFile.name
 except:
 	st.write("no current file selected")
 n_df = pd.DataFrame()
