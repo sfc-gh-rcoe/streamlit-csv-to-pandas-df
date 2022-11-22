@@ -103,6 +103,6 @@ if r_theFile is not None:
 	b_createSnowTable = st.radio("Create Snowflake Table?", (r_options), 1)
 	if (b_createSnowTable == 'yes'):
 		snp_session = create_sp_session()
-		r_theFileName = re.sub('.', '_', r_theFileName)
+		r_theFileName = re.sub('[.]', '_', r_theFileName)
 		create_snow_table(snp_session, n_df, r_theFileName)
 
