@@ -74,8 +74,8 @@ def get_a_file():
 		return theFile
 
 def stage_field_names(l, t_index, t_fieldName):
-	l.update({t_index: t_fieldName})
-	st.session_state[t_fieldName] = t_fieldName
+#	l.update({t_index: t_fieldName})
+#	st.session_state[t_fieldName] = t_fieldName
 	st.write(st.session_state)
 	
 
