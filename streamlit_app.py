@@ -120,7 +120,7 @@ if r_theFile is not None:
 	#	#need to fill in form for column names
 	#	grant_header_names(df)
 	#else:
-	st.radio("Create Snowflake Table?", (r_options), 1)
-	if b_createSnowTable:
+	b_createSnowTable = st.radio("Create Snowflake Table?", (r_options), 1)
+	if (b_createSnowTable == 'yes'):
 		create_snow_table(snp_session, df)
 
