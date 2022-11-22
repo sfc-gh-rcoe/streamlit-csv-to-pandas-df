@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import snowflake.connector
 import numpy as np
+import re
 from datetime import datetime
 from snowflake.snowpark.session import Session
 from io import StringIO
@@ -25,7 +26,7 @@ def create_snow_table(s_sess, t_df, theTableName):
 	now = datetime.now()
 	t_stamp = now.strftime("%H%M%S")
 	df_snp = s_sess.createDataFrame(t_df)
-	df_snp.write.mode('Overwrite').save_as_table(st.secrets["snowflake"].schema + "." + theTableName + "_" + t_stamp)
+	df_snp.write.mode('Overwrite').save_as_table(theTableName + "_" + t_stamp)
 
 def inspect_for_header(t_df, t_newNames):
 	#Inspect data frame for possible column headers
@@ -102,5 +103,6 @@ if r_theFile is not None:
 	b_createSnowTable = st.radio("Create Snowflake Table?", (r_options), 1)
 	if (b_createSnowTable == 'yes'):
 		snp_session = create_sp_session()
+		r_theFileName = re.sub('.', '_', r_theFileName)
 		create_snow_table(snp_session, n_df, r_theFileName)
 
