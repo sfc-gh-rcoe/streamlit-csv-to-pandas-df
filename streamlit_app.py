@@ -103,7 +103,8 @@ if r_theFile is not None:
 #		df = pd.read_csv(StringIO(str(t_dataBuffer, encoding)), header=None)
 		df = pd.DataFrame(df)
 		for k in range(len(c_headers)):
-			st.text_input("Name for column " + str(k) + ":", on_change=stage_field_names, key="field_" + str(k), args=(k, 'field_' + str(k)))
+			# st.text_input("Name for column " + str(k) + ":", on_change=stage_field_names, key="field_" + str(k), args=(k, 'field_' + str(k)))
+			st.text_input("Name for column " + str(k) + ":", key="field_" + str(k))
 		n_df = grant_header_names(df)
 	else:
 #		df = pd.read_csv(StringIO(str(t_dataBuffer, encoding)), header=1, skiprows=1)
