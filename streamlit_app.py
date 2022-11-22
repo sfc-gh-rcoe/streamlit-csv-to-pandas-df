@@ -50,10 +50,12 @@ def inspect_for_header(t_df, t_newNames):
 	return t_newNames
 
 def grant_header_names(t_df):
-	n_cols = df.shape[1]
+	n_cols = len(st.session_state)
+	t_colNames = {}
 	for i in range(n_cols):
-		st.text_input("Name for column " + str(i))
-	st.button("Apply column nams", on_click=apply_header_names)
+		t_colNames.update({i: st.session_state[i]})
+	t_df.rename(columns=t_colNames, inplace=True)
+	return t_df
 
 def apply_header_names(a_df):
 	# Implement logic here
@@ -84,7 +86,6 @@ r_theFile = get_a_file()
 b_hasheader = False
 t_newNames = {}
 encoding = 'utf-8'
-list_of_fields = {}
 try:
 	t_dataBuffer = r_theFile.read()
 except:
@@ -101,9 +102,9 @@ if r_theFile is not None:
 	if (b_headers != 'yes'):
 #		df = pd.read_csv(StringIO(str(t_dataBuffer, encoding)), header=None)
 		df = pd.DataFrame(df)
-		st.write(list_of_fields)
 		for k in range(len(c_headers)):
 			st.text_input("Name for column " + str(k) + ":", on_change=stage_field_names, key="field_" + str(k), args=(k, 'field_' + str(k)))
+		n_df = grant_header_names(df)
 	else:
 #		df = pd.read_csv(StringIO(str(t_dataBuffer, encoding)), header=1, skiprows=1)
 		df = apply_header_names(df)
