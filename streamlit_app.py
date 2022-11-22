@@ -124,5 +124,5 @@ if r_theFile is not None:
 	if (b_createSnowTable == 'yes'):
 		snp_session = create_sp_session()
 		#n_cols = n_df.shape[1]
-		create_snow_table(snp_session, df)
+		create_snow_table(snp_session, n_df)
 
