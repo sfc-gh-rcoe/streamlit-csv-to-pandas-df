@@ -84,6 +84,7 @@ introduce_app()
 
 r_theFile = get_a_file()
 b_hasheader = False
+b_createSnowTable = False
 t_newNames = {}
 encoding = 'utf-8'
 try:
