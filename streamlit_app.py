@@ -53,7 +53,7 @@ def grant_header_names(t_df):
 	n_cols = len(st.session_state)
 	t_colNames = {}
 	for i in range(n_cols):
-		t_colNames.update({i: st.session_state["'field_" + str(i) + "'"]})
+		t_colNames.update({i: st.session_state["'" + "field_" + str(i) + "'"]})
 	t_df.rename(columns=t_colNames, inplace=True)
 	return t_df
 
