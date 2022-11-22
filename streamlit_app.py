@@ -21,23 +21,11 @@ def create_sp_session():
   session = Session.builder.configs(conn_param).create()
   return session
 
-def create_snow_table(s_sess, t_df):
-#	snp_session.use_database(st.secrets["snowflake"].database)
-#	snp_session.use_role(st.secrets["snowflake"].role)
-#	snp_session.use_schema(st.secrets["snowflake"].schema)
-#	snp_session.use_warehouse(st.secrets["snowflake"].warehouse)
+def create_snow_table(s_sess, t_df, theTableName):
 	now = datetime.now()
 	t_stamp = now.strftime("%H%M%S")
-	#t_newNames = {}
-	#n_cols = t_df.shape[1]
-	#for j in range(n_cols):
-	#	st.write(t_df[j][0])
-	#	t_newNames.update("{j: t_df[0][j]}")
-	# st.write(t_newNames)
-	# t_df.rename(columns=t_newNames, inplace=True)
-	st.table(t_df)
 	df_snp = s_sess.createDataFrame(t_df)
-	df_snp.write.mode('Overwrite').save_as_table("table_one_gb_" + t_stamp)
+	df_snp.write.mode('Overwrite').save_as_table(theTableName + "_" + t_stamp)
 
 def inspect_for_header(t_df, t_newNames):
 	#Inspect data frame for possible column headers
@@ -83,6 +71,7 @@ def stage_field_names(t_index, t_fieldName):
 introduce_app()
 
 r_theFile = get_a_file()
+r_theFileName = r_theFile.name
 b_hasheader = False
 b_createSnowTable = False
 t_newNames = {}
@@ -101,20 +90,17 @@ if r_theFile is not None:
 	b_headers = st.radio("Column headers?", (r_options), 1)
 	st.write(b_headers)
 	if (b_headers != 'yes'):
-#		df = pd.read_csv(StringIO(str(t_dataBuffer, encoding)), header=None)
 		df = pd.DataFrame(df)
 		for k in range(len(c_headers)):
 			# st.text_input("Name for column " + str(k) + ":", on_change=stage_field_names, key="field_" + str(k), args=(k, 'field_' + str(k)))
 			st.text_input("Name for column " + str(k) + ":", key="field_" + str(k), value="field_" + str(k) )
 		n_df = grant_header_names(df)
 	else:
-#		df = pd.read_csv(StringIO(str(t_dataBuffer, encoding)), header=1, skiprows=1)
 		df = apply_header_names(df)
 		n_df = df.drop([0, 0])
 	st.table(n_df)
 	b_createSnowTable = st.radio("Create Snowflake Table?", (r_options), 1)
 	if (b_createSnowTable == 'yes'):
 		snp_session = create_sp_session()
-		#n_cols = n_df.shape[1]
-		create_snow_table(snp_session, n_df)
+		create_snow_table(snp_session, n_df, r_theFileName)
 
