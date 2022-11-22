@@ -25,7 +25,7 @@ def create_snow_table(s_sess, t_df, theTableName):
 	now = datetime.now()
 	t_stamp = now.strftime("%H%M%S")
 	df_snp = s_sess.createDataFrame(t_df)
-	df_snp.write.mode('Overwrite').save_as_table(theTableName + "_" + t_stamp)
+	df_snp.write.mode('Overwrite').save_as_table(st.secrets["snowflake"].schema + "." + theTableName + "_" + t_stamp)
 
 def inspect_for_header(t_df, t_newNames):
 	#Inspect data frame for possible column headers
