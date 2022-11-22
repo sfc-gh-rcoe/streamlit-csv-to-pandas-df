@@ -75,6 +75,7 @@ def get_a_file():
 
 def stage_field_names(l, t_index, t_fieldName):
 	l.update({t_index: t_fieldName})
+	st.write(t_index)
 	
 
 introduce_app()
