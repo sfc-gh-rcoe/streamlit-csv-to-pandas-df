@@ -122,5 +122,7 @@ if r_theFile is not None:
 	#else:
 	b_createSnowTable = st.radio("Create Snowflake Table?", (r_options), 1)
 	if (b_createSnowTable == 'yes'):
+		snp_session = create_sp_session()
+		#n_cols = n_df.shape[1]
 		create_snow_table(snp_session, df)
 
