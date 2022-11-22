@@ -112,12 +112,14 @@ if r_theFile is not None:
 		n_df = df.drop([0, 0])
 	st.table(n_df)
 	#snp_session = create_sp_session()
-	#n_cols = df.shape[1]
+	#n_cols = n_df.shape[1]
 	#st.write("This table has " + str(n_cols) + " columns.")
 	#b_hasheader = st.checkbox("Table has a header row?")
 	#if (not b_hasheader):
 	#	#need to fill in form for column names
 	#	grant_header_names(df)
 	#else:
-	#	create_snow_table(snp_session, df)
+	st.radio("Create Snowflake Table?", (r_options), 1)
+	if b_createSnowTable:
+		create_snow_table(snp_session, df)
 
