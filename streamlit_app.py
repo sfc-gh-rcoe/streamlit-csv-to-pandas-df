@@ -28,16 +28,16 @@ def create_snow_table(s_sess, t_df):
 #	snp_session.use_warehouse(st.secrets["snowflake"].warehouse)
 	now = datetime.now()
 	t_stamp = now.strftime("%H%M%S")
-	t_newNames = {}
-	n_cols = t_df.shape[1]
-	for j in range(n_cols):
-		st.write(t_df[j][0])
-		t_newNames.update("{j: t_df[0][j]}")
-	st.write(t_newNames)
-	t_df.rename(columns=t_newNames, inplace=True)
+	#t_newNames = {}
+	#n_cols = t_df.shape[1]
+	#for j in range(n_cols):
+	#	st.write(t_df[j][0])
+	#	t_newNames.update("{j: t_df[0][j]}")
+	# st.write(t_newNames)
+	# t_df.rename(columns=t_newNames, inplace=True)
 	st.table(t_df)
-#	df_snp = s_sess.createDataFrame(t_df)
-#	df_snp.write.mode('Overwrite').save_as_table("table_one_gb_" + t_stamp)
+	df_snp = s_sess.createDataFrame(t_df)
+	df_snp.write.mode('Overwrite').save_as_table("table_one_gb_" + t_stamp)
 
 def inspect_for_header(t_df, t_newNames):
 	#Inspect data frame for possible column headers
@@ -112,14 +112,6 @@ if r_theFile is not None:
 		df = apply_header_names(df)
 		n_df = df.drop([0, 0])
 	st.table(n_df)
-	#snp_session = create_sp_session()
-	#n_cols = n_df.shape[1]
-	#st.write("This table has " + str(n_cols) + " columns.")
-	#b_hasheader = st.checkbox("Table has a header row?")
-	#if (not b_hasheader):
-	#	#need to fill in form for column names
-	#	grant_header_names(df)
-	#else:
 	b_createSnowTable = st.radio("Create Snowflake Table?", (r_options), 1)
 	if (b_createSnowTable == 'yes'):
 		snp_session = create_sp_session()
