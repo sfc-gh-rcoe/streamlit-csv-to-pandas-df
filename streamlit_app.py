@@ -72,6 +72,9 @@ def get_a_file():
 	theFile = st.file_uploader("Locate the file to be uploaded")
 	if theFile is not None:
 		return theFile
+
+def stage_field_names(t_index, t_fieldName):
+	list_of_fields.update({t_index: t_fieldName})
 	
 
 introduce_app()
@@ -80,6 +83,7 @@ r_theFile = get_a_file()
 b_hasheader = False
 t_newNames = {}
 encoding = 'utf-8'
+list_of_fields = {}
 try:
 	t_dataBuffer = r_theFile.read()
 except:
@@ -96,8 +100,9 @@ if r_theFile is not None:
 	if (b_headers != 'yes'):
 #		df = pd.read_csv(StringIO(str(t_dataBuffer, encoding)), header=None)
 		df = pd.DataFrame(df)
+		st.write(list_of_fields)
 		for k in range(len(c_headers)):
-			st.text_input("Name for column " + str(k) + ":")
+			st.text_input("Name for column " + str(k) + ":", on_change=stage_field_names, key='field_' + k, args=(k, 'field_' + k))
 	else:
 #		df = pd.read_csv(StringIO(str(t_dataBuffer, encoding)), header=1, skiprows=1)
 		df = apply_header_names(df)
