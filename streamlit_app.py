@@ -82,7 +82,7 @@ def inspect_file_name(p_fileName):
 introduce_app()
 
 
-c1, c2 = st.columns(2)
+c1, c2, c3 = st.columns(3)
 r_options = ('yes', 'no')
 r_theFile = get_a_file()
 
@@ -116,6 +116,7 @@ with c1:
 			n_df = df.drop([0, 0])
 with c2:
 	st.table(n_df)
+with c3:
 	b_createSnowTable = st.radio("Create Snowflake Table?", (r_options), 1)
 	if (b_createSnowTable == 'yes'):
 		snp_session = create_sp_session()
