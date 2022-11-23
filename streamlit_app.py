@@ -84,9 +84,9 @@ introduce_app()
 
 c1, c2, c3 = st.columns(3)
 r_options = ('yes', 'no')
+r_theFile = get_a_file()
 
 with c1:
-	r_theFile = get_a_file()
 	b_hasheader = False
 	b_createSnowTable = False
 	t_newNames = {}
