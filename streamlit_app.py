@@ -115,7 +115,6 @@ with c2:
 		else:
 			df = apply_header_names(df)
 			n_df = df.drop([0, 0])
-with c3:
 	st.table(n_df)
 	b_createSnowTable = st.radio("Create Snowflake Table?", (r_options), 1)
 	if (b_createSnowTable == 'yes'):
