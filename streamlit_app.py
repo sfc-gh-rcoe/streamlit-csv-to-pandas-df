@@ -83,6 +83,7 @@ introduce_app()
 
 
 c1, c2, c3 = st.columns([3, 3, 3])
+r_options = ('yes', 'no')
 
 with c1:
 	r_theFile = get_a_file()
@@ -103,7 +104,6 @@ with c2:
 			c_headers = inspect_for_header(df, t_newNames)
 			st.write(c_headers)
 			st.write("Does the above output look to be column headers?")
-			r_options = ('yes', 'no')
 			b_headers = st.radio("Column headers?", (r_options), 1)
 			st.write(b_headers)
 		if (b_headers != 'yes'):
