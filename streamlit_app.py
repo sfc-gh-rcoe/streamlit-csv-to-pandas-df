@@ -69,7 +69,7 @@ def stage_field_names(t_index, t_fieldName):
 	st.write(st.session_state)
 	
 def inspect_file_name(p_fileName):
-	t_validFileExt = ['csv', 'json']
+	t_validFileExt = st.secrets["supportedfiles"].filetypes
 	t_fileName = p_fileName.split(".")
 	# st.write(str(len(t_fileName)))
 	if t_fileName[len(t_fileName)-1] in t_validFileExt:
