@@ -106,16 +106,18 @@ with c1:
 				st.write("Does the above output look to be column headers?")
 				b_headers = st.radio("Column headers?", (r_options), 1)
 				st.write(b_headers)
-		if (b_headers != 'yes'):
-			df = pd.DataFrame(df)
-			for k in range(len(c_headers)):
-				# st.text_input("Name for column " + str(k) + ":", on_change=stage_field_names, key="field_" + str(k), args=(k, 'field_' + str(k)))
-				with c3:
-					st.text_input("Name for column " + str(k) + ":", key="field_" + str(k), value="field_" + str(k) )
-			n_df = grant_header_names(df)
+			if (b_headers != 'yes'):
+				df = pd.DataFrame(df)
+				for k in range(len(c_headers)):
+					# st.text_input("Name for column " + str(k) + ":", on_change=stage_field_names, key="field_" + str(k), args=(k, 'field_' + str(k)))
+					with c3:
+						st.text_input("Name for column " + str(k) + ":", key="field_" + str(k), value="field_" + str(k) )
+				n_df = grant_header_names(df)
+			else:
+				df = apply_header_names(df)
+				n_df = df.drop([0, 0])
 		else:
-			df = apply_header_names(df)
-			n_df = df.drop([0, 0])
+			st.write("You haven't selected a usable file")
 with c2:
 	st.table(n_df)
 with c3:
