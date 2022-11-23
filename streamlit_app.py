@@ -68,41 +68,57 @@ def stage_field_names(t_index, t_fieldName):
 #	st.session_state[t_fieldName] = t_fieldName
 	st.write(st.session_state)
 	
+def inspect_file_name(p_fileName):
+	t_validFileExt = ['csv', 'json']
+	t_fileName = p_fileName.split(".")
+	st.write(str(len(t_fileName)))
+	if t_fileName[len(t_fileName)] in t_validFileExt:
+		return True
+	else:
+		return False
+	
+
 
 introduce_app()
 
-r_theFile = get_a_file()
-b_hasheader = False
-b_createSnowTable = False
-t_newNames = {}
-encoding = 'utf-8'
-try:
-	t_dataBuffer = r_theFile.read()
-	r_theFileName = r_theFile.name
-except:
-	st.write("no current file selected")
-n_df = pd.DataFrame()
-if r_theFile is not None:
-	df = pd.read_csv(StringIO(str(t_dataBuffer, encoding)), header=None)
-	c_headers = inspect_for_header(df, t_newNames)
-	st.write(c_headers)
-	st.write("Does the above output look to be column headers?")
-	r_options = ('yes', 'no')
-	b_headers = st.radio("Column headers?", (r_options), 1)
-	st.write(b_headers)
-	if (b_headers != 'yes'):
-		df = pd.DataFrame(df)
-		for k in range(len(c_headers)):
-			# st.text_input("Name for column " + str(k) + ":", on_change=stage_field_names, key="field_" + str(k), args=(k, 'field_' + str(k)))
-			st.text_input("Name for column " + str(k) + ":", key="field_" + str(k), value="field_" + str(k) )
-		n_df = grant_header_names(df)
-	else:
-		df = apply_header_names(df)
-		n_df = df.drop([0, 0])
-	st.table(n_df)
-	b_createSnowTable = st.radio("Create Snowflake Table?", (r_options), 1)
-	if (b_createSnowTable == 'yes'):
-		snp_session = create_sp_session()
-		r_theFileName = re.sub('[.]', '_', r_theFileName)
-		create_snow_table(snp_session, n_df, r_theFileName)
+
+c1, c2 = st.columns(1, 3)
+
+with c1:
+	r_theFile = get_a_file()
+	b_hasheader = False
+	b_createSnowTable = False
+	t_newNames = {}
+	encoding = 'utf-8'
+	try:
+		t_dataBuffer = r_theFile.read()
+		r_theFileName = r_theFile.name
+	except:
+		st.write("no current file selected")
+	n_df = pd.DataFrame()
+with c2:
+	if r_theFile is not None:
+		if inspect_file_name(r_theFileName):
+			df = pd.read_csv(StringIO(str(t_dataBuffer, encoding)), header=None)
+			c_headers = inspect_for_header(df, t_newNames)
+			st.write(c_headers)
+			st.write("Does the above output look to be column headers?")
+			r_options = ('yes', 'no')
+			b_headers = st.radio("Column headers?", (r_options), 1)
+			st.write(b_headers)
+		if (b_headers != 'yes'):
+			df = pd.DataFrame(df)
+			for k in range(len(c_headers)):
+				# st.text_input("Name for column " + str(k) + ":", on_change=stage_field_names, key="field_" + str(k), args=(k, 'field_' + str(k)))
+				st.text_input("Name for column " + str(k) + ":", key="field_" + str(k), value="field_" + str(k) )
+			n_df = grant_header_names(df)
+		else:
+			df = apply_header_names(df)
+			n_df = df.drop([0, 0])
+		st.table(n_df)
+		b_createSnowTable = st.radio("Create Snowflake Table?", (r_options), 1)
+		if (b_createSnowTable == 'yes'):
+			snp_session = create_sp_session()
+			r_theFileName = re.sub('[.]', '_', r_theFileName)
+			create_snow_table(snp_session, n_df, r_theFileName)
 
