@@ -101,15 +101,17 @@ with c1:
 		if inspect_file_name(r_theFileName):
 			df = pd.read_csv(StringIO(str(t_dataBuffer, encoding)), header=None)
 			c_headers = inspect_for_header(df, t_newNames)
-			st.write(c_headers)
-			st.write("Does the above output look to be column headers?")
-			b_headers = st.radio("Column headers?", (r_options), 1)
-			st.write(b_headers)
+			with c3:
+				st.write(c_headers)
+				st.write("Does the above output look to be column headers?")
+				b_headers = st.radio("Column headers?", (r_options), 1)
+				st.write(b_headers)
 		if (b_headers != 'yes'):
 			df = pd.DataFrame(df)
 			for k in range(len(c_headers)):
 				# st.text_input("Name for column " + str(k) + ":", on_change=stage_field_names, key="field_" + str(k), args=(k, 'field_' + str(k)))
-				st.text_input("Name for column " + str(k) + ":", key="field_" + str(k), value="field_" + str(k) )
+				with c3:
+					st.text_input("Name for column " + str(k) + ":", key="field_" + str(k), value="field_" + str(k) )
 			n_df = grant_header_names(df)
 		else:
 			df = apply_header_names(df)
