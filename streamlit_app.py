@@ -82,7 +82,7 @@ def inspect_file_name(p_fileName):
 introduce_app()
 
 
-c1, c2 = st.columns([3, 3])
+c1, c2, c3 = st.columns([3, 3, 3])
 
 with c1:
 	r_theFile = get_a_file()
@@ -115,10 +115,11 @@ with c2:
 		else:
 			df = apply_header_names(df)
 			n_df = df.drop([0, 0])
-		st.table(n_df)
-		b_createSnowTable = st.radio("Create Snowflake Table?", (r_options), 1)
-		if (b_createSnowTable == 'yes'):
-			snp_session = create_sp_session()
-			r_theFileName = re.sub('[.]', '_', r_theFileName)
-			create_snow_table(snp_session, n_df, r_theFileName)
+with c3:
+	st.table(n_df)
+	b_createSnowTable = st.radio("Create Snowflake Table?", (r_options), 1)
+	if (b_createSnowTable == 'yes'):
+		snp_session = create_sp_session()
+		r_theFileName = re.sub('[.]', '_', r_theFileName)
+		create_snow_table(snp_session, n_df, r_theFileName)
 
