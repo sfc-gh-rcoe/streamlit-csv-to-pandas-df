@@ -32,7 +32,7 @@ def inspect_for_header(t_df, t_newNames):
 	#Inspect data frame for possible column headers
 	n_col = int(t_df.shape[1])
 	st.table(t_df)
-	st.write(str(n_col))
+	# st.write(str(n_col))
 	for j in range(n_col):
 		# t_newNames.update({j: t_df[j]})
 		t_newNames.update({j: t_df[j][0]})
@@ -57,7 +57,7 @@ def apply_header_names(a_df):
 		
 
 def introduce_app():
-	st.title("Welcome to the file uploader")
+	st.title("Snowflake data ingest")
 
 def get_a_file():
 	theFile = st.sidebar.file_uploader("Locate the file to be uploaded")
@@ -71,7 +71,7 @@ def stage_field_names(t_index, t_fieldName):
 def inspect_file_name(p_fileName):
 	t_validFileExt = ['csv', 'json']
 	t_fileName = p_fileName.split(".")
-	st.write(str(len(t_fileName)))
+	# st.write(str(len(t_fileName)))
 	if t_fileName[len(t_fileName)-1] in t_validFileExt:
 		return True
 	else:
