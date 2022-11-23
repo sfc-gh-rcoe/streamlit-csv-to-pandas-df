@@ -97,7 +97,6 @@ with c1:
 	except:
 		st.write("no current file selected")
 	n_df = pd.DataFrame()
-with c2:
 	if r_theFile is not None:
 		if inspect_file_name(r_theFileName):
 			df = pd.read_csv(StringIO(str(t_dataBuffer, encoding)), header=None)
@@ -115,6 +114,7 @@ with c2:
 		else:
 			df = apply_header_names(df)
 			n_df = df.drop([0, 0])
+with c2:
 	st.table(n_df)
 	b_createSnowTable = st.radio("Create Snowflake Table?", (r_options), 1)
 	if (b_createSnowTable == 'yes'):
