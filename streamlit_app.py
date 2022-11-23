@@ -82,7 +82,7 @@ def inspect_file_name(p_fileName):
 introduce_app()
 
 
-c1, c2, c3 = st.columns(3)
+c1, c2 = st.columns(2)
 r_options = ('yes', 'no')
 r_theFile = get_a_file()
 
