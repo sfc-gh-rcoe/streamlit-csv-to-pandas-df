@@ -72,7 +72,7 @@ def inspect_file_name(p_fileName):
 	t_validFileExt = ['csv', 'json']
 	t_fileName = p_fileName.split(".")
 	st.write(str(len(t_fileName)))
-	if t_fileName[len(t_fileName)] in t_validFileExt:
+	if t_fileName[len(t_fileName)-1] in t_validFileExt:
 		return True
 	else:
 		return False
