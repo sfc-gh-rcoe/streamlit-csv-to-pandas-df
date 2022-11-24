@@ -87,6 +87,7 @@ introduce_app()
 c1, c2, c3 = st.columns(3, gap = 'large')
 r_options = ('yes', 'no')
 r_theFile = get_a_file()
+c_headers = None
 
 with c1:
 	b_hasheader = False
@@ -106,7 +107,7 @@ with c1:
 				c_headers = inspect_for_header(df, t_newNames)
 			elif get_file_type(r_theFileName) == 'json':
 				df = pd.read_json(StringIO(str(t_dataBuffer, encoding)))
-				c_headers = inspect_for_header(df, t_newNames)
+				# c_headers = inspect_for_header(df, t_newNames)
 				
 			with c3:
 				st.write(c_headers)
