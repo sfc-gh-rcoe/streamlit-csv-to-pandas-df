@@ -93,6 +93,7 @@ c1, c2, c3 = st.columns(3, gap = 'large')
 r_options = ('yes', 'no')
 r_theFile = get_a_file()
 c_headers = None
+f_json = False
 
 with c1:
 	b_hasheader = False
@@ -109,8 +110,10 @@ with c1:
 		if inspect_file_name(r_theFileName):
 			if get_file_type(r_theFileName) == 'csv':
 				df = pd.read_csv(StringIO(str(t_dataBuffer, encoding)), header=None)
+				f_json = False
 			elif get_file_type(r_theFileName) == 'json':
 				df = pd.read_json(StringIO(str(t_dataBuffer, encoding)), orient='index')
+				f_json = True
 				
 			c_headers = inspect_for_header(df, t_newNames)
 			with c3:
@@ -127,7 +130,8 @@ with c1:
 				n_df = grant_header_names(df)
 			else:
 				df = apply_header_names(df)
-				n_df = df.drop([0, 0])
+				if !f_json:
+					n_df = df.drop([0, 0])
 		else:
 			st.write("You haven't selected a usable file")
 with c2:
