@@ -35,7 +35,7 @@ def inspect_for_header(t_df, t_newNames):
 	# st.write(str(n_col))
 	for j in range(n_col):
 		# t_newNames.update({j: t_df[j]})
-		t_txt = t_df[j][0]
+		t_txt = t_df[j][1]
 		if t_txt.isnumeric():
 			t_newNames.update({j: t_df[j][0]})
 		else:
