@@ -35,8 +35,11 @@ def inspect_for_header(t_df, t_newNames):
 	# st.write(str(n_col))
 	for j in range(n_col):
 		# t_newNames.update({j: t_df[j]})
-		#t_newNames.update({j: t_df[j][0]})
-		pass
+		t_txt = t_df[j][0]
+		if t_txt.isnumeric():
+			t_newNames.update({j: t_df[j][0]})
+		else:
+			t_newNames.update({j: "'" + t_df[j][0] + "'"})
 	return t_newNames
 
 def grant_header_names(t_df):
@@ -105,11 +108,10 @@ with c1:
 		if inspect_file_name(r_theFileName):
 			if get_file_type(r_theFileName) == 'csv':
 				df = pd.read_csv(StringIO(str(t_dataBuffer, encoding)), header=None)
-				c_headers = inspect_for_header(df, t_newNames)
 			elif get_file_type(r_theFileName) == 'json':
 				df = pd.read_json(StringIO(str(t_dataBuffer, encoding)))
-				c_headers = inspect_for_header(df, t_newNames)
 				
+			c_headers = inspect_for_header(df, t_newNames)
 			with c3:
 				st.write(c_headers)
 				st.write("Does the above output look to be column headers?")
