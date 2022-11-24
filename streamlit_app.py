@@ -32,10 +32,10 @@ def inspect_for_header(t_df, t_newNames):
 	#Inspect data frame for possible column headers
 	n_col = int(t_df.shape[1])
 	st.table(t_df)
-	# st.write(str(n_col))
+	st.write(str(n_col))
 	for j in range(n_col):
 		# t_newNames.update({j: t_df[j]})
-		t_txt = t_df[j][1]
+		t_txt = t_df[j][0]
 		if t_txt.isnumeric():
 			t_newNames.update({j: t_df[j][0]})
 		else:
