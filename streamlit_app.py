@@ -130,7 +130,7 @@ with c1:
 				n_df = grant_header_names(df)
 			else:
 				df = apply_header_names(df)
-				if (!f_json):
+				if (f_json != True):
 					n_df = df.drop([0, 0])
 		else:
 			st.write("You haven't selected a usable file")
