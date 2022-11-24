@@ -37,10 +37,10 @@ def inspect_for_header(t_df, t_newNames):
 		# t_newNames.update({j: t_df[j]})
 		st.write(str(j))
 		t_txt = str(t_df.columns[j])
-		if t_txt.isnumeric():
-			t_newNames.update({j: t_df.columns[j]})
-		else:
-			t_newNames.update({j: "'" + t_df.columns[j] + "'"})
+#		if t_txt.isnumeric():
+			t_newNames.update({j: t_txt})
+#		else:
+#			t_newNames.update({j: "'" + t_df.columns[j] + "'"})
 	return t_newNames
 
 def grant_header_names(t_df):
