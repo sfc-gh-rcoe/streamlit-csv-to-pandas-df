@@ -56,7 +56,7 @@ def apply_header_names(a_df):
 	n_cols = int(a_df.shape[1])
 	t_colNames = {}
 	for i in range(n_cols):
-		t_colNames.update({i: a_df[i][0]})
+		t_colNames.update({i: a_df.columns[i]})
 	a_df.rename(columns=t_colNames, inplace=True)
 	return a_df
 		
