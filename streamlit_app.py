@@ -110,7 +110,7 @@ with c1:
 			if get_file_type(r_theFileName) == 'csv':
 				df = pd.read_csv(StringIO(str(t_dataBuffer, encoding)), header=None)
 			elif get_file_type(r_theFileName) == 'json':
-				df = pd.read_json(StringIO(str(t_dataBuffer, encoding)), orient='records', typ = 'frame')
+				df = pd.read_json(StringIO(str(t_dataBuffer, encoding)), orient='index')
 				
 			c_headers = inspect_for_header(df, t_newNames)
 			with c3:
