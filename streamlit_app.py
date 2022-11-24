@@ -77,7 +77,9 @@ def inspect_file_name(p_fileName):
 	else:
 		return False
 	
-
+def get_file_type(p_fileName):
+	t_fileName = p_fileName.split(".")
+	return t_fileName[len(t_fileName)-1]
 
 introduce_app()
 
@@ -99,7 +101,11 @@ with c1:
 	n_df = pd.DataFrame()
 	if r_theFile is not None:
 		if inspect_file_name(r_theFileName):
-			df = pd.read_csv(StringIO(str(t_dataBuffer, encoding)), header=None)
+			if get_file_type(r_theFileName) == 'csv':
+				df = pd.read_csv(StringIO(str(t_dataBuffer, encoding)), header=None)
+			else if get_file_type(r_theFileName) == 'json':
+				df = pd.read_json(StringIO(str(t_dataBuffer, encoding)), header=None)
+				
 			c_headers = inspect_for_header(df, t_newNames)
 			with c3:
 				st.write(c_headers)
