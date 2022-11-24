@@ -132,6 +132,7 @@ with c1:
 				df = apply_header_names(df)
 				if (f_json != True):
 					n_df = df.drop([0, 0])
+				n_df = df
 		else:
 			st.write("You haven't selected a usable file")
 with c2:
