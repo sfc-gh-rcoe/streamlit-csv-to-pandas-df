@@ -38,7 +38,7 @@ def inspect_for_header(t_df, t_newNames):
 		st.write(str(j))
 		t_txt = str(t_df.columns[j])
 #		if t_txt.isnumeric():
-			t_newNames.update({j: t_txt})
+		t_newNames.update({j: t_txt})
 #		else:
 #			t_newNames.update({j: "'" + t_df.columns[j] + "'"})
 	return t_newNames
